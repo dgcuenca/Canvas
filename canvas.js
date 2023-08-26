@@ -5,6 +5,18 @@ canvas.height = window.innerHeight;
 
 let c = canvas.getContext('2d');
 
+let mouse = {
+  x: undefined,
+  y: undefined
+}
+
+window.addEventListener('mousemove', 
+function (e) {
+  mouse.x = e.x;
+  mouse.y = e.y;
+
+})
+
 function Circle(x, y, dx, dy, radius, color) {
   this.x = x;
   this.y = y;
@@ -24,6 +36,10 @@ function Circle(x, y, dx, dy, radius, color) {
     if ( y + radius > innerHeight || y-radius < 0 ) dy = -dy;
     x += dx;
     y += dy;
+    // interactivity to increse circle radius 
+    if ( mouse.x - x < 50 && mouse.x - x > -50 && mouse.y - y < 50 && mouse.y - y > -50) {
+      radius ++;
+    }
   }
 }
 
