@@ -26,20 +26,24 @@ function Circle(x, y, dx, dy, radius) {
   }
 }
 
-let x = Math.random() * innerWidth;
-let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values
-let y = Math.random() * innerHeight;
-let dy = (Math.random() - 0.5)*6;
-let radius = 30;
-
-let circle = new Circle(x, y, dx, dy, radius);
+let circleArray = [];
+for (let i= 0; i<10; i++) {
+  let radius = 30;
+  let x = Math.random() * innerWidth;
+  let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values
+  let y = Math.random() * innerHeight;
+  let dy = (Math.random() - 0.5)*6;
+  circleArray.push(new Circle(x, y, dx, dy, radius))
+}
 
 
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0,0,innerWidth,innerHeight); //clean canvas each time we draw
-  circle.draw();
-  circle.update();
+  for (let i = 0; i<circleArray.length; i++) {
+    circleArray[i].draw();
+    circleArray[i].update();
+  }
 }
 
 animate();
