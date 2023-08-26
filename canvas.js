@@ -33,7 +33,7 @@ function Circle(x, y, dx, dy, radius, color) {
   this.radius = radius;
   this.color = color;
   let maxRadius = 40;
-  let minRadius = 5;
+  let minRadius = radius; // so shrink until his initial size
   let fillColor = colorArray[Math.floor(Math.random() * colorArray.length)];
 
   this.draw = function() {
@@ -60,7 +60,7 @@ function Circle(x, y, dx, dy, radius, color) {
 
 let circleArray = [];
 for (let i= 0; i<100; i++) {
-  let radius = 30;
+  let radius = Math.random() * 3 + 1; // generate from 1 to 4 radius circles
   let x = Math.random() * (innerWidth - radius *2) + radius; // prevent circles draw only inside canvas and not in borders
   let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values so circles can start moving in any direction
   let y = Math.random() * (innerHeight- radius *2) + radius;
