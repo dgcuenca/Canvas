@@ -27,9 +27,9 @@ function (e) {
 
 window.addEventListener ('resize', 
 function (e){
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
 })
 
 function Circle(x, y, dx, dy, radius, color) {
@@ -66,20 +66,23 @@ function Circle(x, y, dx, dy, radius, color) {
 }
 
 let circleArray = [];
-for (let i= 0; i<800; i++) {
-  let radius = Math.random() * 3 + 1; // generate from 1 to 4 radius circles
-  let x = Math.random() * (innerWidth - radius *2) + radius; // prevent circles draw only inside canvas and not in borders
-  let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values so circles can start moving in any direction
-  let y = Math.random() * (innerHeight- radius *2) + radius;
-  let dy = (Math.random() - 0.5)*6;
-  const red = Math.floor(Math.random() * 256);
-  const green = Math.floor(Math.random() * 256);
-  const blue = Math.floor(Math.random() * 256);
-  // Convert the RGB values to a CSS color string
-  const color = `rgb(${red}, ${green}, ${blue})`;
-  circleArray.push(new Circle(x, y, dx, dy, radius,color))
-}
 
+function init() {
+  circleArray = [];
+  for (let i= 0; i<500; i++) {
+    let radius = Math.random() * 3 + 1; // generate from 1 to 4 radius circles
+    let x = Math.random() * (innerWidth - radius *2) + radius; // prevent circles draw only inside canvas and not in borders
+    let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values so circles can start moving in any direction
+    let y = Math.random() * (innerHeight- radius *2) + radius;
+    let dy = (Math.random() - 0.5)*6;
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    // Convert the RGB values to a CSS color string
+    const color = `rgb(${red}, ${green}, ${blue})`;
+    circleArray.push(new Circle(x, y, dx, dy, radius,color))
+  }  
+}
 
 function animate() {
   requestAnimationFrame(animate);
@@ -89,5 +92,5 @@ function animate() {
     circleArray[i].update();
   }
 }
-
+init();
 animate();
