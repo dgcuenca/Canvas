@@ -36,9 +36,11 @@ function Circle(x, y, dx, dy, radius, color) {
     if ( y + radius > innerHeight || y-radius < 0 ) dy = -dy;
     x += dx;
     y += dy;
-    // interactivity to increse circle radius 
+    // interactivity to increse circle radius
     if ( mouse.x - x < 50 && mouse.x - x > -50 && mouse.y - y < 50 && mouse.y - y > -50) {
       radius ++;
+    } else if (radius >2) { // so circle dont disappear
+      radius --;
     }
   }
 }
