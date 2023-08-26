@@ -5,10 +5,10 @@ canvas.height = window.innerHeight;
 
 let c = canvas.getContext('2d');
 
-let x = 200;
-let dx = 5;
-let y = 200;
-let dy = 4;
+let x = Math.random() * innerWidth;
+let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values
+let y = Math.random() * innerHeight;
+let dy = (Math.random() - 0.5)*6;
 let radius = 30;
 
 function animate() {
