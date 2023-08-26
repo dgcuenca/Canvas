@@ -25,6 +25,13 @@ function (e) {
 
 })
 
+window.addEventListener ('resize', 
+function (e){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+})
+
 function Circle(x, y, dx, dy, radius, color) {
   this.x = x;
   this.y = y;
@@ -59,7 +66,7 @@ function Circle(x, y, dx, dy, radius, color) {
 }
 
 let circleArray = [];
-for (let i= 0; i<100; i++) {
+for (let i= 0; i<800; i++) {
   let radius = Math.random() * 3 + 1; // generate from 1 to 4 radius circles
   let x = Math.random() * (innerWidth - radius *2) + radius; // prevent circles draw only inside canvas and not in borders
   let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values so circles can start moving in any direction
