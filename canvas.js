@@ -5,17 +5,18 @@ canvas.height = window.innerHeight;
 
 let c = canvas.getContext('2d');
 
-function Circle(x, y, dx, dy, radius) {
+function Circle(x, y, dx, dy, radius, color) {
   this.x = x;
   this.y = y;
   this.dx = dx;
   this.dy = dy;
   this.radius = radius;
+  this.color = color;
 
   this.draw = function() {
     c.beginPath();
     c.arc(x, y, radius, 0, Math.PI * 2, false);
-    c.strokeStyle = 'blue';
+    c.strokeStyle = color;
     c.stroke();
   }
   this.update = function() {
@@ -27,13 +28,18 @@ function Circle(x, y, dx, dy, radius) {
 }
 
 let circleArray = [];
-for (let i= 0; i<10; i++) {
+for (let i= 0; i<100; i++) {
   let radius = 30;
-  let x = Math.random() * innerWidth;
-  let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values
-  let y = Math.random() * innerHeight;
+  let x = Math.random() * (innerWidth - radius *2) + radius; // prevent circles draw only inside canvas and not in borders
+  let dx = (Math.random() - 0.5)*6; // -0.5 to obtain negative values so circles can start moving in any direction
+  let y = Math.random() * (innerHeight- radius *2) + radius;
   let dy = (Math.random() - 0.5)*6;
-  circleArray.push(new Circle(x, y, dx, dy, radius))
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  // Convert the RGB values to a CSS color string
+  const color = `rgb(${red}, ${green}, ${blue})`;
+  circleArray.push(new Circle(x, y, dx, dy, radius,color))
 }
 
 
