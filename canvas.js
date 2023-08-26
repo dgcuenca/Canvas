@@ -10,6 +10,14 @@ let mouse = {
   y: undefined
 }
 
+let colorArray = [
+  '#ffaa33',
+  '#ggffaa',
+  '#00ff00',
+  '#44ggaa',
+  '#32ff48'
+]
+
 window.addEventListener('mousemove', 
 function (e) {
   mouse.x = e.x;
@@ -24,10 +32,15 @@ function Circle(x, y, dx, dy, radius, color) {
   this.dy = dy;
   this.radius = radius;
   this.color = color;
+  let maxRadius = 40;
+  let minRadius = 5;
+  let fillColor = colorArray[Math.floor(Math.random() * colorArray.length)];
 
   this.draw = function() {
     c.beginPath();
     c.arc(x, y, radius, 0, Math.PI * 2, false);
+    c.fillStyle = fillColor;
+    c.fill();
     c.strokeStyle = color;
     c.stroke();
   }
@@ -38,8 +51,8 @@ function Circle(x, y, dx, dy, radius, color) {
     y += dy;
     // interactivity to increse circle radius
     if ( mouse.x - x < 50 && mouse.x - x > -50 && mouse.y - y < 50 && mouse.y - y > -50) {
-      radius ++;
-    } else if (radius >2) { // so circle dont disappear
+      if (radius < maxRadius ) radius ++; // give limit to circle grow
+    } else if (radius > minRadius) { // so circle dont disappear
       radius --;
     }
   }
